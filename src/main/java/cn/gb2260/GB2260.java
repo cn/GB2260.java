@@ -40,9 +40,9 @@ public class GB2260 {
         }
     }
 
-    public Division get(String code) throws Exception {
+    public Division get(String code) {
         if (code.length() != 6) {
-            throw new Exception("Invalid code");
+            throw new InvalidCodeException("Invalid code");
         }
 
         if (!data.containsKey(code)) {
@@ -51,6 +51,8 @@ public class GB2260 {
 
         Division division = new Division();
         division.setName(data.get(code));
+        division.setRevision(getRevision().getCode());
+        division.setCode(code);
 
         if (Pattern.matches("^\\d{2}0{4}$", code)) {
             return division;
@@ -78,15 +80,15 @@ public class GB2260 {
         return provinces;
     }
 
-    public ArrayList<Division> getPrefectures(String code) throws Exception {
+    public ArrayList<Division> getPrefectures(String code)  {
         ArrayList<Division> rv = new ArrayList<Division>();
 
         if (!Pattern.matches("^\\d{2}0{4}$", code)) {
-            throw new Exception("Invalid province code");
+            throw new InvalidCodeException("Invalid province code");
         }
 
         if (!data.containsKey(code)) {
-            throw new Exception("Invalid province code");
+            throw new InvalidCodeException("Province code not found");
         }
 
         Division province = get(code);
@@ -103,15 +105,15 @@ public class GB2260 {
         return rv;
     }
 
-    public ArrayList<Division> getCounties(String code) throws Exception {
+    public ArrayList<Division> getCounties(String code)  {
         ArrayList<Division> rv = new ArrayList<Division>();
 
         if (!Pattern.matches("^\\d+[1-9]0{2,3}$", code)) {
-            throw new Exception("Invalid prefecture code");
+            throw new InvalidCodeException("Invalid prefecture code");
         }
 
         if (!data.containsKey(code)) {
-            throw new Exception("Invalid prefecture code");
+            throw new InvalidCodeException("Prefecture code not found");
         }
 
         Division prefecture = get(code);

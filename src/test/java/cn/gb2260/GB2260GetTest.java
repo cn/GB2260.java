@@ -1,15 +1,20 @@
 package cn.gb2260;
 
 import org.junit.BeforeClass;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class GB2260GetTest {
     private static GB2260 gb2260;
+
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
 
     @BeforeClass
     public static void setUpClass() throws IOException {
@@ -17,30 +22,89 @@ public class GB2260GetTest {
     }
 
     @Test
-    public void testGetProvince() throws Exception {
+    public void testGetProvince() {
         Division data = gb2260.get("110000");
         assertEquals("北京市", data.getName());
         assertEquals("北京市", data.toString());
+        assertEquals(Revision.V2014.getCode(), data.getRevision());
+        assertEquals("110000", data.getCode());
     }
 
     @Test
-    public void testGetProvinces() {
-        ArrayList<Division> provinces = gb2260.getProvinces();
-        assertNotNull(provinces);
-        assertTrue("Should not be empty", provinces.size() > 0);
+    public void testGetPrefecture() {
+        Division data = gb2260.get("110100");
+        assertEquals("市辖区", data.getName());
+        assertEquals("北京市", data.getProvince());
+        assertEquals("北京市 市辖区", data.toString());
     }
 
     @Test
-    public void testGetPrefectures() throws Exception {
-        ArrayList<Division> data = gb2260.getPrefectures("110000");
-        assertNotNull(data);
-        assertTrue("Should not be empty", data.size() > 0);
+    public void testGetCounty() {
+        Division data = gb2260.get("110101");
+        assertEquals("东城区", data.getName());
+        assertEquals("北京市", data.getProvince());
+        assertEquals("市辖区", data.getPrefecture());
+        assertEquals("北京市 市辖区 东城区", data.toString());
     }
-    
+
     @Test
-    public void testGetCounties() throws Exception {
-        ArrayList<Division> data = gb2260.getCounties("110100");
-        assertNotNull(data);
-        assertTrue("Should not be empty", data.size() > 0);
+    public void testNull() {
+        assertNull(gb2260.get("999999"));
+    }
+
+    @Test
+    public void testInvalidCodeLength() {
+        thrown.expect(InvalidCodeException.class);
+        thrown.expectMessage("Invalid code");
+        gb2260.get("2207248");
+    }
+
+    @Test
+    public void testInvalidCodeLength2() {
+        thrown.expect(InvalidCodeException.class);
+        thrown.expectMessage("Invalid code");
+        gb2260.get("2");
+    }
+
+    @Test
+    public void testInvalidProvinceCode() {
+        thrown.expect(InvalidCodeException.class);
+        thrown.expectMessage("Province code not found");
+        gb2260.getPrefectures("990000");
+    }
+
+    @Test
+    public void testInvalidProvinceCode2() {
+        thrown.expect(InvalidCodeException.class);
+        thrown.expectMessage("Invalid code");
+        gb2260.get("99");
+    }
+
+    @Test
+    public void testInvalidPrefectureCode() {
+        thrown.expect(InvalidCodeException.class);
+        thrown.expectMessage("Invalid code");
+        gb2260.get("111");
+    }
+
+    @Test
+    public void testInvalidPrefectureCode2() {
+        thrown.expect(InvalidCodeException.class);
+        thrown.expectMessage("Invalid code");
+        gb2260.get("1109");
+    }
+
+    @Test
+    public void testInvalidPrefectureCode3() {
+        thrown.expect(InvalidCodeException.class);
+        thrown.expectMessage("Prefecture code not found");
+        gb2260.getCounties("999900");
+    }
+
+    @Test
+    public void testInvalidCountyCode() {
+        thrown.expect(InvalidCodeException.class);
+        thrown.expectMessage("Invalid code");
+        gb2260.get("11019");
     }
 }
