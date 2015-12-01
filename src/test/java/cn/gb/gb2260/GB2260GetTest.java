@@ -5,8 +5,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class GB2260GetTest {
     private static GB2260 gb2260;
@@ -27,5 +28,12 @@ public class GB2260GetTest {
         Division data = gb2260.findByCode("110000");
         assertEquals("北京市", data.getName());
         assertEquals("北京市", data.toString());
+    }
+
+    @Test
+    public void testGetProvinces() {
+        ArrayList<Division> provinces = gb2260.getProvinces();
+        assertNotNull(provinces);
+        assertTrue("Should not be empty", provinces.size() > 0);
     }
 }
