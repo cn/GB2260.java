@@ -18,6 +18,8 @@
                 <configuration>
                     <repoToken>yourcoverallsprojectrepositorytoken</repoToken>
                     <sourceEncoding>UTF8</sourceEncoding>
+                    <serviceName>travis-ci</serviceName>
+                    <serviceJobId>${env.TRAVIS_JOB_ID}</serviceJobId>
                 </configuration>
             </plugin>
             <plugin>
@@ -28,6 +30,8 @@
                     <format>xml</format>
                     <maxmem>256m</maxmem>
                     <check>true</check>
+                    <!-- aggregated reports for multi-module projects -->
+                    <aggregate>true</aggregate>
                 </configuration>
             </plugin>
         </plugins>
