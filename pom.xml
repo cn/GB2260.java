@@ -8,10 +8,6 @@
     <artifactId>GB2260</artifactId>
     <version>0.1</version>
     <packaging>jar</packaging>
-    
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
 
     <build>
         <plugins>
@@ -21,20 +17,18 @@
                 <version>4.1.0</version>
                 <configuration>
                     <repoToken>yourcoverallsprojectrepositorytoken</repoToken>
+                    <sourceEncoding>UTF8</sourceEncoding>
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.7.5.201505241946</version>
-                <executions>
-                    <execution>
-                        <id>prepare-agent</id>
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-                </executions>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>cobertura-maven-plugin</artifactId>
+                <version>2.7</version>
+                <configuration>
+                    <format>xml</format>
+                    <maxmem>256m</maxmem>
+                    <check>true</check>
+                </configuration>
             </plugin>
         </plugins>
     </build>
