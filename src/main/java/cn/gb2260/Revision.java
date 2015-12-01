@@ -1,4 +1,4 @@
-package cn.gb.gb2260;
+package cn.gb2260;
 
 public enum Revision {
     V2014("2014"),

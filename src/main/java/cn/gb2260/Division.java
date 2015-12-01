@@ -1,4 +1,4 @@
-package cn.gb.gb2260;
+package cn.gb2260;
 
 public class Division {
     private String name;
@@ -49,6 +49,6 @@ public class Division {
 
     @Override
     public String toString() {
-        return (province == null ? "" : province) + (prefecture == null ? "" : prefecture) + name;
+        return (province == null ? "" : province + " ") + (prefecture == null ? "" : prefecture + " ") + (name == null ? "" : name);
     }
 }
