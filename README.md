@@ -12,11 +12,25 @@ The latest GB/T 2260 codes. Read the [GB2260 Specification](https://github.com/c
 
 ## Build
 
-Install with npm:
+Install with nvm:
 
     $ git submodule update --init
     $ mvn clean package
     $ mvn install:install-file -Dfile=GB2260-0.1.jar -DgroupId=cn.gb2260 -DartifactId=GB2260 -Dversion=0.1 -Dpackaging=jar
+
+Update the pom.xml file in project
+
+```xml
+    <dependencies>
+        ...
+        <dependency>
+            <groupId>cn.gb2260</groupId>
+            <artifactId>GB2260</artifactId>
+            <version>0.1</version>
+        </dependency>
+        ...
+    </dependencies>
+```
 
 ## Usage
 
