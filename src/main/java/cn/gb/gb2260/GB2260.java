@@ -31,7 +31,7 @@ public class GB2260 {
 
             data.put(code, name);
 
-            if (Pattern.matches("^\\d{2}0{4}$", code)) {
+            if (Pattern.matches(".*0{4}$", code)) {
                 Division division = new Division();
                 division.setCode(code);
                 division.setName(name);

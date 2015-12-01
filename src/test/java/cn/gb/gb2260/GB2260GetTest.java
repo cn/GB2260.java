@@ -15,12 +15,6 @@ public class GB2260GetTest {
     @BeforeClass
     public static void setUpClass() throws IOException {
         gb2260 = new GB2260();
-        System.out.println("@BeforeClass setUpClass");
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-        System.out.println("@AfterClass tearDownClass");
     }
 
     @Test
