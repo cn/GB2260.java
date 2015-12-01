@@ -4,9 +4,8 @@ The Java implementation for looking up Chinese administrative divisions.
 ## GB/T 2260
 
 [![GB/T 2260](https://img.shields.io/badge/GB%2FT%202260-v0.2-blue.svg)](https://github.com/cn/GB2260)
-[![Build Status](https://img.shields.io/travis/cn/GB2260.js.svg?style=flat)](https://travis-ci.org/cn/GB2260.js)
-[![Coverage](https://img.shields.io/coveralls/cn/GB2260.js.svg?style=flat)](https://coveralls.io/r/cn/GB2260.js)
-[![Current Release](https://img.shields.io/npm/v/gb2260.svg?style=flat)](https://npmjs.org/package/gb2260)
+[![Build Status](https://img.shields.io/travis/cn/GB2260.js.svg?style=flat)](https://travis-ci.org/cn/GB2260.java)
+[![Coverage](https://img.shields.io/coveralls/cn/GB2260.js.svg?style=flat)](https://coveralls.io/r/cn/GB2260.java)
 
 The latest GB/T 2260 codes. Read the [GB2260 Specification](https://github.com/cn/GB2260/blob/v0.2/spec.md).
 
@@ -47,13 +46,13 @@ GB2260 gb = new gb2260.GB2260(Revision.V2002); // specify the revision
 
 Interface for GB2260.
 
-### .get(code)
+### .getDivision(code)
 
 Get division for the given code.
 
 ```java
-Division division = gb.get("110105")
-// <GB/T 2260-2014> 110105 北京市 市辖区 朝阳区
+Division division = gb.getDivision("110105")
+// 北京市 市辖区 朝阳区
 
 division.getName()
 // 朝阳区

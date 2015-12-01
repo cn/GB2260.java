@@ -23,7 +23,7 @@ public class GB2260GetTest {
 
     @Test
     public void testGetProvince() {
-        Division data = gb2260.get("110000");
+        Division data = gb2260.getDivision("110000");
         assertEquals("北京市", data.getName());
         assertEquals("北京市", data.toString());
         assertEquals(Revision.V2014.getCode(), data.getRevision());
@@ -32,7 +32,7 @@ public class GB2260GetTest {
 
     @Test
     public void testGetPrefecture() {
-        Division data = gb2260.get("110100");
+        Division data = gb2260.getDivision("110100");
         assertEquals("市辖区", data.getName());
         assertEquals("北京市", data.getProvince());
         assertEquals("北京市 市辖区", data.toString());
@@ -40,7 +40,7 @@ public class GB2260GetTest {
 
     @Test
     public void testGetCounty() {
-        Division data = gb2260.get("110101");
+        Division data = gb2260.getDivision("110101");
         assertEquals("东城区", data.getName());
         assertEquals("北京市", data.getProvince());
         assertEquals("市辖区", data.getPrefecture());
@@ -49,21 +49,21 @@ public class GB2260GetTest {
 
     @Test
     public void testNull() {
-        assertNull(gb2260.get("999999"));
+        assertNull(gb2260.getDivision("999999"));
     }
 
     @Test
     public void testInvalidCodeLength() {
         thrown.expect(InvalidCodeException.class);
         thrown.expectMessage("Invalid code");
-        gb2260.get("2207248");
+        gb2260.getDivision("2207248");
     }
 
     @Test
     public void testInvalidCodeLength2() {
         thrown.expect(InvalidCodeException.class);
         thrown.expectMessage("Invalid code");
-        gb2260.get("2");
+        gb2260.getDivision("2");
     }
 
     @Test
@@ -77,21 +77,21 @@ public class GB2260GetTest {
     public void testInvalidProvinceCode2() {
         thrown.expect(InvalidCodeException.class);
         thrown.expectMessage("Invalid code");
-        gb2260.get("99");
+        gb2260.getDivision("99");
     }
 
     @Test
     public void testInvalidPrefectureCode() {
         thrown.expect(InvalidCodeException.class);
         thrown.expectMessage("Invalid code");
-        gb2260.get("111");
+        gb2260.getDivision("111");
     }
 
     @Test
     public void testInvalidPrefectureCode2() {
         thrown.expect(InvalidCodeException.class);
         thrown.expectMessage("Invalid code");
-        gb2260.get("1109");
+        gb2260.getDivision("1109");
     }
 
     @Test
@@ -105,6 +105,6 @@ public class GB2260GetTest {
     public void testInvalidCountyCode() {
         thrown.expect(InvalidCodeException.class);
         thrown.expectMessage("Invalid code");
-        gb2260.get("11019");
+        gb2260.getDivision("11019");
     }
 }

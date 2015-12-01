@@ -40,7 +40,7 @@ public class GB2260 {
         }
     }
 
-    public Division get(String code) {
+    public Division getDivision(String code) {
         if (code.length() != 6) {
             throw new InvalidCodeException("Invalid code");
         }
@@ -91,12 +91,12 @@ public class GB2260 {
             throw new InvalidCodeException("Province code not found");
         }
 
-        Division province = get(code);
+        Division province = getDivision(code);
 
         Pattern pattern = Pattern.compile("^" + code.substring(0, 2) + "\\d{2}00$");
         for (String key : data.keySet()) {
             if (pattern.matcher(key).matches()) {
-                Division division = get(key);
+                Division division = getDivision(key);
                 division.setProvince(province.getName());
                 rv.add(division);
             }
@@ -116,13 +116,13 @@ public class GB2260 {
             throw new InvalidCodeException("Prefecture code not found");
         }
 
-        Division prefecture = get(code);
-        Division province = get(code.substring(0, 2) + "0000");
+        Division prefecture = getDivision(code);
+        Division province = getDivision(code.substring(0, 2) + "0000");
 
         Pattern pattern = Pattern.compile("^" + code.substring(0, 4) + "\\d+$");
         for (String key : data.keySet()) {
             if (pattern.matcher(key).matches()) {
-                Division division = get(key);
+                Division division = getDivision(key);
                 division.setProvince(province.getName());
                 division.setPrefecture(prefecture.getName());
                 rv.add(division);
