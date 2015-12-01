@@ -1,0 +1,6 @@
+[submodule "data"]
+	path = src/main/resources
+	url = git://github.com/cn/GB2260.git
+[submodule "src/main/resources/data"]
+	path = src/main/resources/data
+	url = git://github.com/cn/GB2260.git
