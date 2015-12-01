@@ -21,15 +21,15 @@ Install with nvm:
 Update the pom.xml file in project
 
 ```xml
-    <dependencies>
-        ...
-        <dependency>
-            <groupId>cn.gb2260</groupId>
-            <artifactId>GB2260</artifactId>
-            <version>0.1</version>
-        </dependency>
-        ...
-    </dependencies>
+<dependencies>
+    ...
+    <dependency>
+        <groupId>cn.gb2260</groupId>
+        <artifactId>GB2260</artifactId>
+        <version>0.1</version>
+    </dependency>
+    ...
+</dependencies>
 ```
 
 ## Usage
