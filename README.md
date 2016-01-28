@@ -11,11 +11,11 @@ The latest GB/T 2260 codes. Read the [GB2260 Specification](https://github.com/c
 
 ## Build
 
-Install with nvm:
+Install with maven:
 
     $ git submodule update --init
     $ mvn clean package
-    $ mvn install:install-file -Dfile=GB2260-0.1.jar -DgroupId=cn.gb2260 -DartifactId=GB2260 -Dversion=0.1 -Dpackaging=jar
+    $ mvn install:install-file -Dfile=target/GB2260-0.1.jar -DgroupId=cn.gb2260 -DartifactId=GB2260 -Dversion=0.1 -Dpackaging=jar
 
 Update the pom.xml file in project
 
@@ -33,15 +33,11 @@ Update the pom.xml file in project
 
 ## Usage
 
-```java
-GB2260 gb = new GB2260();
-```
-
 ## GB2260
 
 ```java
-GB2260 gb = new gb2260.GB2260(); // with default revision 2014
-GB2260 gb = new gb2260.GB2260(Revision.V2002); // specify the revision
+GB2260 gb = new GB2260(); // with default revision 2014
+GB2260 gb = new GB2260(Revision.V2002); // specify the revision
 ```
 
 Interface for GB2260.
