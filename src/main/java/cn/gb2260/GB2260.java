@@ -13,30 +13,35 @@ public class GB2260 {
     private HashMap<String, String> data;
     private ArrayList<Division> provinces;
 
-    public GB2260() throws IOException {
+    public GB2260() {
         this(Revision.V2014);
     }
 
-    public GB2260(Revision revision) throws IOException {
+    public GB2260(Revision revision) {
         this.revision = revision;
         data = new HashMap<String, String>();
         provinces = new ArrayList<Division>();
         InputStream inputStream = getClass().getResourceAsStream("/data/" + revision.getCode() + ".txt");
         BufferedReader r = new BufferedReader(new InputStreamReader(inputStream));
-        while (r.ready()) {
-            String line = r.readLine();
-            String[] split = line.split("\t");
-            String code = split[0];
-            String name = split[1];
+        try {
+            while (r.ready()) {
+                String line = r.readLine();
+                String[] split = line.split("\t");
+                String code = split[0];
+                String name = split[1];
 
-            data.put(code, name);
+                data.put(code, name);
 
-            if (Pattern.matches("^\\d{2}0{4}$", code)) {
-                Division division = new Division();
-                division.setCode(code);
-                division.setName(name);
-                provinces.add(division);
+                if (Pattern.matches("^\\d{2}0{4}$", code)) {
+                    Division division = new Division();
+                    division.setCode(code);
+                    division.setName(name);
+                    provinces.add(division);
+                }
             }
+        } catch (IOException e) {
+            System.err.println("Error in loading GB2260 data!");
+            throw new RuntimeException(e);
         }
     }
 
